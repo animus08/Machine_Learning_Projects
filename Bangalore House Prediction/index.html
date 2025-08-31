@@ -1,0 +1,153 @@
+<!-- Bangalore House Price Predictor -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bangalore House Price Predictor ML App</title>
+    <style>
+      body {
+        background-image: url("static/images/house3.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      h1 {
+        color: red;
+        font-weight: bold;
+      }
+      .form-label {
+        font-weight: bold;
+        color: #203864;
+        font-size: 18px;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .form-input {
+        width: 300px;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        background: #f9f9f9;
+      }
+      .form-note {
+        font-size: 13px;
+        color: #555;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+      .button_css {
+        color: #494949 !important;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: #ffffff;
+        padding: 20px;
+        border: 4px solid #494949 !important;
+        display: inline-block;
+        transition: all 0.4s ease 0s;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 8px;
+      }
+      .button_css:hover {
+        color: #ffffff !important;
+        background: #f6b93b;
+        border-color: #f6b93b !important;
+        transition: all 0.4s ease 0s;
+      }
+      .result-text {
+        font-size: 28px;
+        font-weight: bold;
+        color: #203864;
+        margin-top: 30px;
+      }
+      .main-heading {
+        font-family: 'Segoe UI', 'Arial', sans-serif;
+        color: #2d6cdf;
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px #b3c6e7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <center>
+        <form action="{{ url_for('predict')}}" method="post">
+          <h1 class="main-heading">Enter the Information of House to Predict the Price</h1>
+          <table style="margin: 0 auto;">
+            <tr>
+              <td>
+                <label class="form-label" for="size_bhk">BHK</label>
+                <input type="number" name="size_bhk" class="form-input" placeholder="BHK" required step="1" />
+              </td>
+              <td>
+                <label class="form-label" for="total_sqft">Total Square Foot</label>
+                <input type="number" name="total_sqft" class="form-input" placeholder="Total Square Foot" required step="10" min="350" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="form-label" for="bath">Bathrooms</label>
+                <input type="number" name="bath" class="form-input" placeholder="Bathrooms" required step="1" />
+              </td>
+              <td>
+                <label class="form-label" for="balcony">Balcony</label>
+                <input type="number" name="balcony" class="form-input" placeholder="Balcony" required step="1" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="form-label" for="price_per_sqft">Price Per Square Foot</label>
+                <input type="number" name="price_per_sqft" class="form-input" placeholder="Price Per Square Foot" required step="10" min="500" />
+              </td>
+              <td>
+                <label class="form-label" for="availability">Availability</label>
+                <input type="number" name="availability" class="form-input" placeholder="Availability (1 or 0)" required min="0" max="1" />
+                <div class="form-note">1 = Available, 0 = Might or might not be available</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="form-label" for="area_type">Area Type</label>
+                <select name="area_type" class="form-input" required>
+                  <option value="">Select Area Type</option>
+                  <option value="Built-up  Area">Built-up  Area</option>
+                  <option value="Carpet  Area">Carpet  Area</option>
+                  <option value="Plot  Area">Plot  Area</option>
+                  <option value="Super built-up  Area">Super built-up  Area</option>
+                </select>
+              </td>
+              <td>
+                <label class="form-label" for="location">Location</label>
+                <select name="location" class="form-input" required>
+                  <option value="">Select Location</option>
+                  {% for loc in locations %}
+                    <option value="{{ loc }}">{{ loc }}</option>
+                  {% endfor %}
+                </select>
+              </td>
+            </tr>
+          </table>
+          <br />
+          <div class="button_cont" align="center">
+            <button type="submit" class="button_css">
+              Predict House Price
+            </button>
+          </div>
+        </form>
+      </center>
+      <div>
+        <center>
+          {% if prediction_text %}
+            <div class="result-text">{{ prediction_text }}</div>
+          {% endif %}
+        </center>
+      </div>
+    </div>
+  </body>
+</html>
