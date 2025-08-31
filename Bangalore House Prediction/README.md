@@ -37,14 +37,14 @@ The web interface is built using **Flask**, allowing users to input various hous
 ```
 
 Bangalore\_House\_Prediction/
-│── index.html                         # Front-end HTML form
-│── app.py                             # Flask app to serve predictions
-│── model.py                           # Loads model & scaler, predicts prices
-│── Bangalore\_House\_Prediction\_Cleaning.ipynb   # Data cleaning & preprocessing
-│── Bangalore\_House\_Prediction\_Model.ipynb      # Model training & evaluation
-│── BHP\_Cleaned\_Data.csv               # Cleaned dataset
-│── bengaluru\_house\_price\_prediction\_rfr\_model.pkl  # Trained Random Forest model
-│── Bengaluru\_House\_Data.csv           # Raw dataset
+│── index.html                                               # Front-end HTML form
+│── app.py                                                   # Flask app to serve predictions
+│── model.py                                                 # Loads model & scaler, predicts prices
+│── Bangalore\_House\_Prediction\_Cleaning.ipynb             # Data cleaning & preprocessing
+│── Bangalore\_House\_Prediction\_Model.ipynb                # Model training & evaluation
+│── BHP\_Cleaned\_Data.csv                                   # Cleaned dataset
+│── bengaluru\_house\_price\_prediction\_rfr\_model.pkl      # Trained Random Forest model
+│── Bengaluru\_House\_Data.csv                               # Raw dataset
 
 ````
 
